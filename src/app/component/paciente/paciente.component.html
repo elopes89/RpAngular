@@ -1,0 +1,146 @@
+<app-tool-bar></app-tool-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-2">
+      <h1>Patience</h1>
+      <form  [formGroup]="registerForm">
+        <label>Nome</label>
+        <input
+          [ngClass]="{'is-invalid': submitted && registerForm.controls?.['nome']?.errors}"
+          type="text"
+          formControlName="nome"
+          class="form-control"
+        />
+        <div
+          *ngIf="submitted && registerForm.controls?.['nome']?.errors"
+          class="text-danger"
+        >
+          <div *ngIf="registerForm.controls?.['nome']?.errors?.['required']">
+            O Email é obrigatório!!
+          </div>
+          <div *ngIf="registerForm.controls?.['nome']?.errors?.['nome']">
+            Formato incorreto!!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-floating mb-3">
+            <input
+              onkeydown="return false"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls?.['dataNascimento']?.errors}"
+              type="date"
+              min="1980-01-01"
+              max="2005-01-01"
+              formControlName="dataNascimento"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Data"
+            />
+            <label for="floatingInput">Data</label>
+          </div>
+          <div
+            *ngIf="submitted && registerForm.controls?.['dataNascimento']?.errors"
+            class="text-danger"
+          >
+            <div
+              *ngIf="registerForm.controls?.['dataNascimento']?.errors?.['required']"
+            >
+              A Data é obrigatória!!
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="boEdit">
+          <div class="form-group">
+            <label for="cep">CEP</label>
+            <input
+            [readOnly]="true"
+              type="text"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
+              formControlName="cep"
+              class="form-control"
+              (change)="BuscaCep()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cep">Bairro</label>
+            <input type="text" formControlName="bairro" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="rua">Rua</label>
+            <input type="text" formControlName="rua" class="form-control" />
+          </div>
+        </div>
+
+        <div *ngIf="boEdit == false">
+          <div class="form-group">
+            <label for="cep">CEP Model</label>
+            <input
+              type="text"
+              [(ngModel)]="cepForm"
+              [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
+              formControlName="cep"
+              class="form-control"
+              (change)="BuscaCep()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cep">Bairro</label>
+            <input
+              type="text"
+              [(ngModel)]="end.bairro"
+              [readOnly]="true"
+              formControlName="bairro"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rua">Rua</label>
+            <input
+              [readonly]="true"
+              [(ngModel)]="end.logradouro"
+              type="text"
+              formControlName="rua"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="floatingSelectGrid"
+              aria-label="Floating label select example"
+              formControlName="genero"
+            >
+              <option value="male">male</option>
+              <option value="female">female</option>
+              <option value="nd">N D</option>
+            </select>
+            <label for="floatingSelectGrid">GÊNERO</label>
+          </div>
+        </div>
+        <br />
+      </form>
+      <button class="btn btn-primary"  (click)="OnSubmit()">CADASTRAR</button>
+      <button class="btn btn-warning" (click)="EditPac()">EDITAR</button>
+      <button class="btn btn-warning" (click)="EditarCep()">EDITAR CEP</button>
+      <button class="btn btn-danger" (click)="Deletar()">DELETAR</button>
+    </div>
+  </div>
+</div>
+
+<h2>A implementar</h2>
+<div>
+  Data de Nascimento: Obrigatório, data válida. CPF: Obrigatório com o formato
+  000.000.000-00 RG com órgão expedidor: Obrigatório, com máximo de 20
+  caracteres. Estado Civil: Obrigatório com dropdown de opções pré-definidas.
+  Telefone: Obrigatório com o formato (99) 9 9999-9999. E-mail: Não obrigatório
+  e com validação. Contato de Emergência: Obrigatório com o formato (99) 9
+  9999-9999. Alergias: Obrigatório, com máximo de 1000 caracteres.
+</div>
+<!-- <button class="btn btn-primary" (click)="BuscaCep()">Buscar cep</button> -->

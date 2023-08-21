@@ -1,0 +1,37 @@
+<app-tool-bar></app-tool-bar>
+<nav class="navbar navbar-light bg-light">
+  <input
+    [(ngModel)]="nomeBusca"
+    class="form-control mr-sm-2"
+    type="search"
+    placeholder="Busca"
+    aria-label="Search"
+  />
+  <div *ngFor="let b of pacientes; index as i">
+    <div *ngIf="nomeBusca.toUpperCase() == b.nome.toUpperCase()">
+      <div class="card mb-3 col p-0" (click)="Detalhes(i)">
+        <div class="details" class="card-body">
+          <h5 class="card-title">Nome: {{ b.nome }}</h5>
+          <p class="card-text">Cep: {{ b.cep }}</p>
+          <p class="card-text">Rua: {{ b.rua }}</p>
+          <p class="card-text">Id {{ b.id }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div
+  *ngFor="let b of pacientes; index as i"
+  class="col-12 col-md-6 col-lg-4 col-xl-3"
+>
+  <div  class="card mb-3 col p-0" (click)="Detalhes(i)">
+    <div class="details" class="card-body">
+      <h5 class="card-title">Nome: {{ b.nome }}</h5>
+      <p class="card-text">Cep: {{ b.cep }}</p>
+      <p class="card-text">Rua: {{ b.rua }}</p>
+      <p class="card-text">Id {{ b.id }}</p>
+      <span>clique p + Detalhes</span>
+    </div>
+  </div>
+</div>

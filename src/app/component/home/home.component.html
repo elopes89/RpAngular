@@ -1,0 +1,46 @@
+<app-tool-bar></app-tool-bar>
+<h2>Busca</h2>
+<input type="text" [(ngModel)]="nomeBusca" /> <br />
+<div *ngFor="let b of pacientes" class="col-12 col-md-6 col-lg-4 col-xl-3">
+  <div *ngIf="nomeBusca.toUpperCase() == b.nome.toUpperCase()">
+    <div class="card mb-3 col p-0">
+      <div class="card-body">
+        <h5 class="card-title">Nome: {{ b.nome }}</h5>
+        <p class="card-text">Cep: {{ b.cep }}</p>
+        <p class="card-text">Rua: {{ b.rua }}</p>
+        <p class="card-text">Id {{ b.id }}</p>
+        <button (click)="Detalhes(b.id)">detalhes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<h2>Estatísticas</h2>
+<div class="col-12 col-md-6 col-lg-4 col-xl-3">
+  <div class="card mb-3 col p-0">
+    <div class="card-body">
+      <h5 class="card-title">Total de Pacientes</h5>
+      <p class="card-text">{{ pacientes.length }}</p>
+    </div>
+  </div>
+
+  <div class="card mb-3 col p-0">
+    <div class="card-body">
+      <h5 class="card-title">Total de Vacinas</h5>
+      <p class="card-text">{{ vacinasPac.length }}</p>
+    </div>
+  </div>
+</div>
+<h1>Pacientes</h1>
+<div *ngFor="let b of pacientes" class="col-12 col-md-6 col-lg-4 col-xl-3">
+  <div class="card mb-3 col p-0">
+    <div class="card-body">
+      <h5 class="card-title">Pacientes</h5>
+      <p class="card-text">Nome: {{ b.nome }}</p>
+      <p class="card-text">Cep: {{ b.cep }}</p>
+      <p class="card-text">Rua: {{ b.rua }}</p>
+      <p class="card-text">Id {{ b.id }}</p>
+      <button (click)="Detalhes(b.id)">detalhes</button>
+    </div>
+  </div>
+</div>
