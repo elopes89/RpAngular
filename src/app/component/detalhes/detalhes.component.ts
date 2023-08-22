@@ -19,7 +19,7 @@ export class DetalhesComponent {
 
   iD = 0;
   BuscarPac() {
-    this.cv.getAllPac().subscribe(pac => {
+    this.cv.getAll("paciente", this.pacientes).subscribe(pac => {
       this.pacientes = pac;
     });
     this.cv.getAll("vacina", this.vacinasPac).subscribe(vac => {

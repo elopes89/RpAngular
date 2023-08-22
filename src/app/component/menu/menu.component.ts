@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { navBarData } from './nav-data';
 
 @Component({
   selector: 'app-menu',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  navData = navBarData;
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
+  collapsed = false;
+  toogleCollapsed() {
+    this.collapsed = !this.collapsed
+  }
+  closeSideNav() {
+    this.collapsed = false
+  }
 }

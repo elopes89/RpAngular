@@ -13,7 +13,7 @@ export class ToolBarComponent implements OnInit {
   }
 
   BuscarPac() {
-    this.cv.getAllPac().subscribe((pac => {
+    this.cv.getAll("paciente", this.cv.pacientes).subscribe((pac => {
       this.cv.pacientes = pac;
     }))
     console.log("teste" + this.cv.pacientes);

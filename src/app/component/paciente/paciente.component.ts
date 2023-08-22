@@ -11,9 +11,7 @@ import { CoronaVacService } from 'src/app/service/corona-vac.service';
   styleUrls: ['./paciente.component.css']
 })
 export class PacienteComponent implements OnInit {
-
-
-  @Input() atendiData: IPaciente | null = null;
+    @Input() atendiData: IPaciente | null = null;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
  this.BuscarPac();
@@ -46,7 +44,7 @@ export class PacienteComponent implements OnInit {
     if(this.registerForm.invalid){
       return;
     }else
-        this.cv.Edit(this.registerForm.value, this.cv.idDetail).subscribe(pac => {
+        this.cv.edit(this.registerForm.value, this.cv.idDetail).subscribe(pac => {
       this.cv.pacientes.push(pac);
     })
   }

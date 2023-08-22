@@ -13,7 +13,7 @@ export class CoronaVacService {
   boolEditar = false;
   pacientes: Array<IPaciente> = [];
   idVacina = 0;
-  idE = 0;
+  // idE = 0;
   idDetail = 0;
   apiCep = `viacep.com.br/ws/${this.cep}/json`;
   apiBase = "http://localhost:3000"
@@ -23,21 +23,14 @@ export class CoronaVacService {
     return this.http.get<IEndereco>(`http://viacep.com.br/ws/${cep}/json`);
   }
 
-  addCep(usuario: any, t: any, endPoint: string): Observable<typeof t> {
-    return this.http.post<typeof t>(`${this.apiBase}/${endPoint}`, usuario)
-  }
-
   getAll(endpoint: string, t: any): Observable<typeof t[]> {
     return this.http.get<[]>(`${this.apiBase}/${endpoint}`)
   }
 
-  getAllPac(): Observable<IPaciente[]> {
-    return this.http.get<IPaciente[]>(`${this.apiBase}/paciente`)
-  }
   add(usuario: any, t: any, endPoint: string): Observable<typeof t> {
     return this.http.post<typeof t>(`${this.apiBase}/${endPoint}`, usuario)
   }
-  Edit(usuario: any, id: number): Observable<IPaciente> {
+  edit(usuario: any, id: number): Observable<IPaciente> {
     return this.http.put<IPaciente>(`${this.apiBase}/paciente/${id}`, usuario)
   }
 

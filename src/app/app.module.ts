@@ -16,6 +16,12 @@ import { VacinaComponent } from './component/vacina/vacina.component';
 import { HistoricoComponent } from './component/historico/historico.component';
 import { DetalhesComponent } from './component/detalhes/detalhes.component';
 import { EditarComponent } from './component/editar/editar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { TesteComponent } from './component/teste/teste.component';
 
 
 @NgModule({
@@ -30,11 +36,12 @@ import { EditarComponent } from './component/editar/editar.component';
     VacinaComponent,
     HistoricoComponent,
     DetalhesComponent,
-    EditarComponent
+    EditarComponent,
+    TesteComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, RouterModule, ReactiveFormsModule,  HttpClientModule, FormsModule
+    AppRoutingModule, RouterModule, ReactiveFormsModule,  HttpClientModule, FormsModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

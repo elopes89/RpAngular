@@ -33,7 +33,7 @@ export class VacinaComponent implements OnInit {
   }
 
   BuscarPac() {
-    this.cv.getAllPac().subscribe(pac => {
+    this.cv.getAll("paciente", this.cv.pacientes).subscribe(pac => {
       this.pacientes = pac;
     })
   }
