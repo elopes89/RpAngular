@@ -10,6 +10,7 @@ import { VacinaComponent } from './component/vacina/vacina.component';
 import { HistoricoComponent } from './component/historico/historico.component';
 import { DetalhesComponent } from './component/detalhes/detalhes.component';
 import { EditarComponent } from './component/editar/editar.component';
+import { TesteComponent } from './component/teste/teste.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'historico', component: HistoricoComponent },
   { path: 'detalhes', component: DetalhesComponent },
   { path: 'edit/:id', component: EditarComponent },
+  { path: 'teste', component: TesteComponent },
 ]
 
 @NgModule({

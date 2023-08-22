@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
+
+.cont {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.container {
+  position: fixed;
+  margin-left: 200px;
+  margin-right: 0;
+}
+.row {
+  margin-right: 0;
+  margin-left: 200px;
+}
