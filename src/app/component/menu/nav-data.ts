@@ -1,29 +1,34 @@
 export const navBarData = [
   {
-    routeLink: '/historico',
+    routeLink: '/private/home',
+    icon: 'fal fa-home',
+    label: 'Home'
+  },
+  {
+    routeLink: '/private/historico',
     icon: 'fa fa-folder-open',
     label: 'Histórico'
   },
+
   {
-    routeLink: '/detalhes',
-    icon: 'fal fa-home',
-    label: 'Detalhes'
-  },
-  {
-    routeLink: '/vacina',
+    routeLink: '/private/vacina',
     icon: 'fa fa-syringe',
     label: 'Vacinas'
   }, {
-    routeLink: '/paciente',
+    routeLink: '/private/paciente',
     icon: 'fa fa-head-side',
     label: 'Pacientes'
-  }, {
-    routeLink: '/home',
-    icon: 'fal fa-home',
-    label: 'Home'
-  }, {
-    routeLink: '/',
-    icon:'fa fa-bars',
-    label: 'Login'
-  },
+  }
+  // {
+  //   routeLink: '/login',
+  //   icon: 'fa fa-sign-out',
+  //   label: 'Sair',
+  // }
 ]
+
+// {
+//   routeLink: '/detalhes',
+//   icon: 'fa fa-info',
+//   label: 'Detalhes'
+// },
+

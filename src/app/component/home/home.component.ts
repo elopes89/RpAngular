@@ -14,6 +14,8 @@ export class HomeComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
     this.Buscar();
+    this.cv.nomePagina = "Home";
+
   }
 
   vacinasPac: Array<IVacina> = [];
@@ -32,8 +34,8 @@ export class HomeComponent {
   Detalhes(id: number) {
     this.cv.idDetail = id;
     this.cv.boolEditar = true;
-    this.router.navigate([`/edit/${id}`])
+    this.cv.atvBotao = true;
+    this.router.navigate([`/private/edit/${id}`])
   }
-
 
 }

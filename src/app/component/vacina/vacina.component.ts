@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IPaciente } from 'IPaciente';
 import { IVacina } from 'IVacina';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
+import { navBarData } from '../menu/nav-data';
 
 @Component({
   selector: 'app-vacina',
@@ -13,6 +14,8 @@ import { CoronaVacService } from 'src/app/service/corona-vac.service';
 export class VacinaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
     this.BuscarPac();
+    this.cv.nomePagina = navBarData[2].label;
+
   }
   nomeBusca = '';
   pacientes: Array<IPaciente> = [];

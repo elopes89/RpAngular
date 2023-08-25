@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   pacientes: Array<IPaciente> = [];
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
 this.buscar();
+this.cv.nomePagina = '';
   }
   registerForm!: FormGroup;
   vs = false;
@@ -30,7 +31,8 @@ this.buscar();
         senha: this.registerForm.get('senha')?.value
       };
       await this.cv.logar(usuario);
-      this.router.navigate(['/home']);
+      this.cv.nomePagina = 'Home';
+      this.router.navigate(['/private/home']);
     } catch (e) {
       this.vs = true;
     }

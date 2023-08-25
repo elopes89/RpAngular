@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { LoginComponent } from './component/login/login.component';
-import { PacienteComponent } from './component/paciente/paciente.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { TesteComponent } from './component/teste/teste.component';
+import { PublicComponent } from './component/layouts/public/public.component';
+import { PrivateComponent } from './component/layouts/private/private.component';
+import { PacienteComponent } from './component/paciente/paciente.component';
 
 
 @NgModule({
@@ -30,14 +31,15 @@ import { TesteComponent } from './component/teste/teste.component';
     HomeComponent,
     MenuComponent,
     LoginComponent,
-    PacienteComponent,
     UsuarioComponent,
     ToolBarComponent,
     VacinaComponent,
     HistoricoComponent,
     DetalhesComponent,
     EditarComponent,
-    TesteComponent,
+    PublicComponent,
+    PrivateComponent,
+    PacienteComponent
   ],
   imports: [
     BrowserModule,
