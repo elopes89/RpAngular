@@ -2,6 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPaciente } from 'IPaciente';
 import { IUsuario } from 'IUsuario';
+import { IVacina } from 'IVacina';
 import { Observable, lastValueFrom } from 'rxjs';
 import { IEndereco } from 'src/IEndereco';
 
@@ -9,13 +10,13 @@ import { IEndereco } from 'src/IEndereco';
   providedIn: 'root'
 })
 export class CoronaVacService {
-  cep = "123";
   boolEditar = false;
   pacientes: Array<IPaciente> = [];
+  vacinas: Array<IVacina> = [];
   idVacina = 0;
-  // idE = 0;
   idDetail = 0;
-  apiCep = `viacep.com.br/ws/${this.cep}/json`;
+  nomePagina = "";
+  atvBotao = false;
   apiBase = "http://localhost:3000"
   constructor(private http: HttpClient) { }
 
@@ -61,5 +62,31 @@ export class CoronaVacService {
 
   private _obterUsuarios() {
     return lastValueFrom(this.http.get<IUsuario[]>('http://localhost:3000/usuario'));
+  }
+
+
+  verificarUsuarioLogado() {
+    const usuario = localStorage.getItem('usuario');
+    if (!usuario) return false;
+
+    const dataString = localStorage.getItem('sessao');
+    if (dataString === null) throw new Error('data nula!!');
+    const dataSessao = new Date(dataString).getTime();
+    const dataAtual = new Date().getTime();
+    const sessaoExpirada = dataAtual > dataSessao;
+    if (sessaoExpirada) {
+      this.sair();
+      return false;
+    }
+
+    return true;
+  }
+
+  registrar(usuario: IUsuario) {
+    return lastValueFrom(this.http.post('http://localhost:3000/usuario', usuario));
+  }
+
+  sair() {
+    localStorage.clear();
   }
 }

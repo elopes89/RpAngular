@@ -10,17 +10,19 @@ body {
 }
 
 .cont {
+  margin: 0;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
+  justify-content: space-around;
 }
 
 .container {
-  position: fixed;
-  margin-left: 200px;
+  position: relative;
+  margin-left: 100px;
   margin-right: 0;
 }
 .row {
   margin-right: 0;
-  margin-left: 200px;
+  margin-left: 100px;
 }
+

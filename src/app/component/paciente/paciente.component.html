@@ -1,3 +1,4 @@
+<app-tool-bar></app-tool-bar>
 <div class="cont">
   <app-menu></app-menu>
   <div class="container">
@@ -5,13 +6,18 @@
       <div class="col-md-6 offset-md-2">
         <h1>Patience</h1>
         <form [formGroup]="registerForm">
-          <label>Nome</label>
-          <input
-            [ngClass]="{'is-invalid': submitted && registerForm.controls?.['nome']?.errors}"
-            type="text"
-            formControlName="nome"
-            class="form-control"
-          />
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                [ngClass]="{'is-invalid': submitted && registerForm.controls?.['nome']?.errors}"
+                type="text"
+                formControlName="nome"
+                class="form-control"
+                placeholder="Nome"
+              />
+              <label>Nome</label>
+            </div>
+          </div>
           <div
             *ngIf="submitted && registerForm.controls?.['nome']?.errors"
             class="text-danger"
@@ -37,7 +43,7 @@
                 id="floatingInput"
                 placeholder="Data"
               />
-              <label for="floatingInput">Data</label>
+              <label for="floatingInput">Data De Nascimento</label>
             </div>
             <div
               *ngIf="submitted && registerForm.controls?.['dataNascimento']?.errors"
@@ -58,6 +64,7 @@
                 id="floatingSelectGrid"
                 aria-label="Floating label select example"
                 formControlName="genero"
+                placeholder="Gênero"
               >
                 <option value="male">male</option>
                 <option value="female">female</option>
@@ -69,75 +76,119 @@
 
           <div *ngIf="boEdit">
             <div class="form-group">
-              <label for="cep">CEP</label>
-              <input
-                [readOnly]="true"
-                type="text"
-                [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
-                formControlName="cep"
-                class="form-control"
-                (change)="BuscaCep()"
-              />
+              <div class="form-floating mb-3">
+                <input
+                  [readOnly]="true"
+                  type="text"
+                  [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
+                  formControlName="cep"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Cep"
+                  (change)="BuscaCep()"
+                />
+                <label for="cep">CEP</label>
+              </div>
             </div>
 
             <div class="form-group">
-              <label for="cep">Bairro</label>
-              <input
-                type="text"
-                formControlName="bairro"
-                class="form-control"
-              />
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  formControlName="bairro"
+                  class="form-control"
+                  placeholder="Bairro"
+                />
+                <label for="bairro">Bairro</label>
+              </div>
             </div>
             <div class="form-group">
-              <label for="rua">Rua</label>
-              <input type="text" formControlName="rua" class="form-control" />
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  formControlName="rua"
+                  class="form-control"
+                  placeholder="Rua"
+                />
+                <label for="rua">Rua</label>
+              </div>
             </div>
           </div>
 
           <div *ngIf="boEdit == false">
             <div class="form-group">
-              <label for="cep">CEP Model</label>
-              <input
-                type="text"
-                [(ngModel)]="cepForm"
-                [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
-                formControlName="cep"
-                class="form-control"
-                (change)="BuscaCep()"
-              />
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  [(ngModel)]="cepForm"
+                  [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
+                  formControlName="cep"
+                  class="form-control"
+                  (change)="BuscaCep()"
+                  placeholder="Cep"
+                />
+                <label for="cep">CEP</label>
+              </div>
             </div>
-            <div *ngIf="cepForm">
-              <div class="form-group">
-                <label for="cep">Bairro</label>
+          </div>
+          <div *ngIf="cepForm">
+            <div class="form-group">
+              <div class="form-floating mb-3">
                 <input
                   type="text"
                   [readOnly]="true"
                   [(ngModel)]="end.bairro"
                   formControlName="bairro"
                   class="form-control"
+                  placeholder="Bairro"
                 />
+                <label for="bairro">Bairro</label>
               </div>
+            </div>
 
-              <div class="form-group">
-                <label for="rua">Rua</label>
+            <div class="form-group">
+              <div class="form-floating mb-3">
                 <input
                   type="text"
                   [readOnly]="true"
                   [(ngModel)]="end.logradouro"
                   formControlName="rua"
                   class="form-control"
+                  placeholder="Rua"
                 />
+                <label for="rua">Rua</label>
               </div>
             </div>
           </div>
+
           <br />
         </form>
-        <button class="btn btn-primary" (click)="OnSubmit()">CADASTRAR</button>
-        <button class="btn btn-warning" (click)="EditPac()">EDITAR</button>
-        <button class="btn btn-warning" (click)="EditarCep()">
-          EDITAR CEP
+        <button
+          class="btn btn-primary"
+          [disabled]="disBotao"
+          (click)="OnSubmit()"
+        >
+          CADASTRAR
         </button>
-        <button class="btn btn-danger" (click)="Deletar()">DELETAR</button>
+        <button
+          class="btn btn-warning"
+          [disabled]="!disBotao"
+          (click)="EditPac()"
+        >
+          EDITAR
+        </button>
+        <button
+          class="btn btn-danger"
+          [disabled]="!disBotao"
+          (click)="Deletar()"
+        >
+          DELETAR
+        </button>
+        <div *ngIf="disBotao">
+          <button class="btn btn-secondary" (click)="EditarCep()">
+            EDITAR Cep
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -151,4 +202,3 @@
   e com validação. Contato de Emergência: Obrigatório com o formato (99) 9
   9999-9999. Alergias: Obrigatório, com máximo de 1000 caracteres.
 </div>
-<!-- <button class="btn btn-primary" (click)="BuscaCep()">Buscar cep</button> -->

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPaciente } from 'IPaciente';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
+import { navBarData } from '../menu/nav-data';
 
 @Component({
   selector: 'app-editar',
@@ -10,14 +11,14 @@ import { CoronaVacService } from 'src/app/service/corona-vac.service';
 })
 export class EditarComponent {
   atendi!: IPaciente;
-  boEdit = this.cv.boolEditar;
+  constructor(private router: ActivatedRoute, private route: Router, private cv: CoronaVacService) {
+  }
 
-  constructor(private router: ActivatedRoute, private cv: CoronaVacService) { }
+  ngOnInit(): void {
+    const id = Number(this.router.snapshot.paramMap.get("id"))
+    this.cv.getIdPac(id).subscribe((item) => {
+      this.atendi = item;
+    });
+  }
 
-ngOnInit(): void {
-  const id = Number(this.router.snapshot.paramMap.get("id"))
-  this.cv.getIdPac(id).subscribe((item) =>{
-    this.atendi = item;
-  });
-}
 }

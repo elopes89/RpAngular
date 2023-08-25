@@ -12,6 +12,8 @@ import { CoronaVacService } from 'src/app/service/corona-vac.service';
 export class HistoricoComponent {
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
     this.Buscar();
+    this.cv.nomePagina = "Histórico";
+
   }
 nomeBusca = '';
 pacientes: Array<IPaciente> = [];
