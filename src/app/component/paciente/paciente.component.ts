@@ -19,11 +19,11 @@ export class PacienteComponent implements OnInit {
     private cv: CoronaVacService) {
     this.NP()
     this.BuscarPac();
+    this.cv.BuscarDash();
 
   }
   boEdit = this.cv.boolEditar;
   disBotao = this.cv.atvBotao;
-  cepForm = '';
   registerForm!: FormGroup;
   vs = false;
   submitted = false;
@@ -44,6 +44,7 @@ export class PacienteComponent implements OnInit {
       return
     } else {
       this.salvar();
+      this.cv.atualizarDash();
       this.router.navigate(['/'])
     }
   }
@@ -63,18 +64,20 @@ export class PacienteComponent implements OnInit {
       });
     this.cv.boolEditar = false;
   }
-  EditarCep() {
-    this.boEdit = false;
-  }
 
   BuscarPac() {
     this.cv.getAll("paciente", this.pacientes).subscribe(pac => {
       this.cv.pacientes = pac;
+      this.cv.getAll("vacina", this.cv.vacinas).subscribe(pac => {
+        this.cv.vacinas = pac;
+      })
     })
   }
+  cepBool = false;
   BuscaCep() {
-    this.cv.getCep(this.cepForm).subscribe((ceps => {
-      this.end = ceps
+    this.cv.getCep(this.registerForm.get('cep')?.value).subscribe((ceps => {
+      this.end = ceps;
+      this.cepBool = true;
     }))
   }
   nd = 0;
@@ -90,7 +93,7 @@ export class PacienteComponent implements OnInit {
       });
       this.cv.boolEditar = false;
       alert(`Paciente ${this.atendiData?.nome} deletado com sucesso`);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/private/home']);
     } else {
       alert("Vacina cadastrada não permitido a deleção");
     }
@@ -101,12 +104,32 @@ export class PacienteComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       id: [''],
       nome: [this.atendiData ? this.atendiData.nome : '', [Validators.required]],
+      cpf: [this.atendiData ? this.atendiData.cpf : '', [Validators.required]],
+      rg: [this.atendiData ? this.atendiData.rg : '', [Validators.required]],
+      contato: [this.atendiData ? this.atendiData.contato : '', [Validators.required]],
+      alergias: [this.atendiData ? this.atendiData.rg : '', [Validators.required]],
+      email: [this.atendiData ? this.atendiData.email : '', [Validators.email]],
+      estado: [this.atendiData ? this.atendiData.estado : '', [Validators.required]],
+      telefone: [this.atendiData ? this.atendiData.telefone : '', [Validators.required]],
       genero: [this.atendiData ? this.atendiData.genero : '', [Validators.required]],
       dataNascimento: [this.atendiData ? this.atendiData.dataNascimento : '', [Validators.required]],
       cep: [this.atendiData ? this.atendiData.cep : '', [Validators.required]],
       rua: [this.atendiData ? this.atendiData.rua : '', [Validators.required]],
-      bairro: [this.atendiData ? this.atendiData.bairro : '', [Validators.required]]
-    })
+      bairro: [this.atendiData ? this.atendiData.bairro : '', [Validators.required]],
+      uf: [this.atendiData ? this.atendiData.uf : '', [Validators.required]]
 
+    })
   }
+  get cep() {
+    return this.registerForm.get('cep');
+  }
+
+  get bairro() {
+    return this.registerForm.get('bairro')!
+  }
+
+  get rua() {
+    return this.registerForm.get('rua')!
+  }
+
 }

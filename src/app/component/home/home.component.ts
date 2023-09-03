@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IPaciente } from 'IPaciente';
 import { IVacina } from 'IVacina';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
+import { IDash } from '../dash/IDash';
 
 @Component({
   selector: 'app-home',
@@ -13,23 +14,26 @@ import { CoronaVacService } from 'src/app/service/corona-vac.service';
 export class HomeComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
-    this.Buscar();
     this.cv.nomePagina = "Home";
+    this.Buscar();
 
   }
 
   vacinasPac: Array<IVacina> = [];
   nomeBusca = '';
   pacientes: Array<IPaciente> = [];
+  pac = 0;
+  vac = 0;
   Buscar() {
-    this.cv.getAll("paciente", this.pacientes).subscribe((pac => {
+    this.cv.getAll("paciente", this.pacientes).subscribe(pac => {
+      this.pac = pac.length;
       this.pacientes = pac;
-    }));
-    this.cv.getAll("vacina", this.vacinasPac).subscribe(vac => {
-      this.vacinasPac = vac
-    });
-  }
+    })
 
+    this.cv.getAll("vacina", this.cv.vacinas).subscribe(vac => {
+      this.vac = vac.length;
+    })
+  }
 
   Detalhes(id: number) {
     this.cv.idDetail = id;

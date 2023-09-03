@@ -19,12 +19,10 @@ body {
   top: 0;
   width: 5rem;
   height: 100vh;
-  /* box-shadow: 0.063rem 0 1.25rem 0 #8690a3; */
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
   padding: 0;
-
 
   .logo-container {
     display: flex;
@@ -88,7 +86,7 @@ body {
       color: #f3f3f3;
       text-decoration: none;
       border-radius: 0.625rem;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       .sidenav-link-icon {
         font-size: 22px;
@@ -103,9 +101,30 @@ body {
     }
   }
   .sidenav-nav-item:hover {
-    .sidenav-nav-link{
+    .sidenav-nav-link {
       background-color: #fff;
-      color: #000
+      color: #000;
     }
+  }
+}
+
+#liSair {
+  width: 100%;
+
+}
+
+ #ali {
+  padding-left: 20px;
+  padding-right: 60px;
+}
+
+#liSair span {
+  margin-left: 50px;
+}
+
+#liSair:hover {
+  .sidenav-nav-link {
+    background-color: #fff;
+    color: #000;
   }
 }

@@ -14,6 +14,7 @@ import { navBarData } from '../menu/nav-data';
 export class VacinaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
     this.BuscarPac();
+    this.cv.BuscarDash();
     this.cv.nomePagina = navBarData[2].label;
 
   }
@@ -31,6 +32,7 @@ export class VacinaComponent implements OnInit {
     } else {
       this.tes = this.cv.idVacina;
       this.salvar();
+      this.cv.atualizarDash();
       this.router.navigate(['/'])
     }
   }
@@ -38,7 +40,10 @@ export class VacinaComponent implements OnInit {
   BuscarPac() {
     this.cv.getAll("paciente", this.cv.pacientes).subscribe(pac => {
       this.pacientes = pac;
-    })
+    });
+    this.cv.getAll("vacina", this.cv.vacinas).subscribe(pac => {
+      this.cv.vacinas = pac;
+    });
   }
 
   vacinas: Array<IVacina> = [];
@@ -49,10 +54,9 @@ export class VacinaComponent implements OnInit {
   }
   tes = 10;
   getFormPac(id: number) {
-    this.cv.getIdPac(id).subscribe(pac => {
+    this.cv.getId(id, "paciente", this.pacientes).subscribe(pac => {
       this.atendi = pac;
-      console.log(this.atendi);
-      console.log(this.atendi.id);
+      this.nomeBusca = '';
     })
   }
 

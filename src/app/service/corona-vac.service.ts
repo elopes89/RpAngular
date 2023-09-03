@@ -5,14 +5,22 @@ import { IUsuario } from 'IUsuario';
 import { IVacina } from 'IVacina';
 import { Observable, lastValueFrom } from 'rxjs';
 import { IEndereco } from 'src/IEndereco';
+import { IDash } from '../component/dash/IDash';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoronaVacService {
   boolEditar = false;
+  dashArr: any;
+  objDash = {
+    id: 0,
+    paciente: 0,
+    vacina: 0
+  }
   pacientes: Array<IPaciente> = [];
   vacinas: Array<IVacina> = [];
+  chartData = [this.vacinas.length, this.pacientes.length];
   idVacina = 0;
   idDetail = 0;
   nomePagina = "";
@@ -35,9 +43,35 @@ export class CoronaVacService {
     return this.http.put<IPaciente>(`${this.apiBase}/paciente/${id}`, usuario)
   }
 
-  getIdPac(id: number): Observable<IPaciente> {
-    return this.http.get<IPaciente>(`${this.apiBase}/paciente/${id}`)
+  editDash(usuario: any, id: number): Observable<IDash> {
+    return this.http.put<IDash>(`${this.apiBase}/dash/${id}`, usuario)
   }
+
+
+  getId(id: number, endPoint: string, t: any): Observable<typeof t> {
+    return this.http.get<typeof t>(`${this.apiBase}/${endPoint}/${id}`)
+  }
+  getDash(): Observable<IDash> {
+    return this.http.get<IDash>(`${this.apiBase}/dash`)
+  }
+
+  BuscarDash() {
+    this.getAll("paciente", this.pacientes).subscribe(pac => {
+      this.pacientes = pac;
+      this.objDash.paciente = this.pacientes.length;
+    })
+
+    this.getAll("vacina", this.vacinas).subscribe(vac => {
+      this.objDash.vacina = vac.length;
+    })
+  }
+
+  atualizarDash() {
+    this.editDash(this.objDash, 0).subscribe((not) => {
+      this.dashArr.push(not);
+    })
+  }
+
 
   del(id: number): Observable<IPaciente> {
     return this.http.delete<IPaciente>(`${this.apiBase}/paciente/${id}`)
@@ -83,7 +117,7 @@ export class CoronaVacService {
   }
 
   registrar(usuario: IUsuario) {
-    return lastValueFrom(this.http.post('http://localhost:3000/usuario', usuario));
+    return lastValueFrom(this.http.put(`http://localhost:3000/usuario/${0}`, usuario));
   }
 
   sair() {

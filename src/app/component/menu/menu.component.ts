@@ -9,10 +9,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  constructor(private cv: CoronaVacService, private route: Router) { }
+  constructor(private cv: CoronaVacService, private route: Router) {
+    this.Buscar();
+    this.cv.BuscarDash();
+  }
   navData = navBarData;
   ngOnInit(): void {
+
+
   }
+  upDash() {
+    this.cv.atualizarDash();
+  }
+
+
+  Buscar() {
+    this.cv.getAll("paciente", this.cv.pacientes).subscribe(pac => {
+      this.cv.pacientes = pac;
+    })
+
+    this.cv.getAll("vacina", this.cv.vacinas).subscribe(pac => {
+      this.cv.vacinas = pac;
+    })
+  }
+
+
+
 
   collapsed = false;
   toogleCollapsed() {
@@ -22,7 +44,7 @@ export class MenuComponent implements OnInit {
     this.collapsed = false
   }
 
-  testfunc(){
+  testfunc() {
     this.cv.sair();
     this.route.navigate(['/']);
   }

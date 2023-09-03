@@ -13,6 +13,8 @@ import { PublicComponent } from './component/layouts/public/public.component';
 import { privadoGuard, publicoGuard } from './auth.guard';
 import { PrivateComponent } from './component/layouts/private/private.component';
 import { PacienteComponent } from './component/paciente/paciente.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { DashComponent } from './component/dash/dash.component';
 
 const routes: Routes = [
 
@@ -54,10 +56,14 @@ const routes: Routes = [
       {
         path: 'edit/:id', component: EditarComponent,
         canActivate: [privadoGuard]
+      }, {
+        path: 'dash', component: DashComponent,
+        canActivate: [privadoGuard]
       },
 
     ]
-  }
+  },
+  {path: '**', component: NotFoundComponent}
 
 ]
 
