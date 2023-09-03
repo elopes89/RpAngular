@@ -1,4 +1,6 @@
+
 export const navBarData = [
+
   {
     routeLink: '/private/home',
     icon: 'fal fa-home',
@@ -19,12 +21,14 @@ export const navBarData = [
     icon: 'fa fa-head-side',
     label: 'Pacientes'
   }
-  // {
-  //   routeLink: '/login',
-  //   icon: 'fa fa-sign-out',
-  //   label: 'Sair',
-  // }
 ]
+
+
+
+// function teste() {
+//   this.cv.sair();
+//   this.route.navigate(['/']);
+// }
 
 // {
 //   routeLink: '/detalhes',

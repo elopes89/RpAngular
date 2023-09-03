@@ -1,32 +1,43 @@
-
 <app-tool-bar></app-tool-bar>
-
-<app-menu></app-menu>
-<h1>Paciente</h1>
-<div class="container my-5" *ngIf="pacientes">
-  <div class="row d-flex">
-    <div class="card mb-3 col p-0">
-      <div class="card-body">
-        <h5 class="card-title">Nome: {{ pacientes[iD].nome }}</h5>
-        <p class="card-text">Cep: {{ pacientes[iD].cep }}</p>
-        <p class="card-text">Rua: {{ pacientes[iD].rua }}</p>
-        <p class="card-text">Id {{ pacientes[iD].id }}</p>
+<div class="cont">
+  <div>
+    <app-menu></app-menu>
+  </div>
+  <div class="container">
+    <h1>Paciente</h1>
+    <div
+      *ngFor="let b of pacientes; index as i"
+      class="col-12 col-md-6 col-lg-4 col-xl-3"
+    >
+      <div *ngIf="b.id == iD">
+        <div class="container my-5">
+          <div class="row d-flex">
+            <div class="card mb-3 col p-0">
+              <div class="card-body">
+                <h5 class="card-title">Nome: {{ b.nome }}</h5>
+                <p class="card-text">Cep: {{ b.cep }}</p>
+                <p class="card-text">Rua: {{ b.rua }}</p>
+                <p class="card-text">Id {{ b.id }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<h1>Vacinas</h1>
-<div class="container my-5">
-  <div class="row d-flex">
-    <div *ngFor="let v of vacinasPac" >
+    <h1>Vacinas</h1>
+    <div *ngFor="let v of vacinasPac" class="col-12 col-md-6 col-lg-4 col-xl-3">
       <div *ngIf="v.idPaciente == iD">
-        <div class="card mb-3 col-3 p-0">
-          <div class="card-body">
-            <h5 class="card-title">Nome: {{ v.nome }}</h5>
-            <p class="card-text">Id: {{ v.id }}</p>
-            <p class="card-text">Id Paciente: {{ v.idPaciente }}</p>
-            <p class="card-text">Laboratório: {{ v.lab }}</p>
-            <p class="card-text">Qtd {{ v.qtd }}</p>
+        <div class="container my-5">
+          <div class="row d-flex" style="display: flex;">
+            <div class="card mb-3 col p-0" style="display: flex;">
+              <div class="card-body">
+                <h5 class="card-title">Nome: {{ v.nome }}</h5>
+                <p class="card-text">Id: {{ v.id }}</p>
+                <p class="card-text">Id Paciente: {{ v.idPaciente }}</p>
+                <p class="card-text">Laboratório: {{ v.lab }}</p>
+                <p class="card-text">Qtd {{ v.qtd }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,12 @@
+.conteudo {
+  display: flex;
+}
+.dash {
+  margin: 0;
+  width: 1000px;
+}
+
+.init {
+  margin: 0;
+  width: 300px;
+}

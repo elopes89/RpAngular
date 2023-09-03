@@ -33,16 +33,15 @@ export class UsuarioComponent implements OnInit {
   }
 
   salvar() {
-    this.cv.add(this.registerForm.value, this.usuarios, "usuario").subscribe((user => {
-      this.usuarios.push(user);
-    }))
+    this.cv.registrar(this.registerForm.value);
   }
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      nome: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       senha: ['', [Validators.required, Validators.minLength(1)]],
-      email: ['', [Validators.required]]
+
     })
   }
-
 
 }

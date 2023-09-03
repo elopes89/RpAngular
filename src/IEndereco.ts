@@ -4,4 +4,5 @@ export interface IEndereco {
   logradouro: string;
   bairro: string;
   cidade: string;
+  uf: string;
 }

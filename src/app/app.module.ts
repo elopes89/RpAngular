@@ -23,7 +23,13 @@ import { MatListModule } from '@angular/material/list';
 import { PublicComponent } from './component/layouts/public/public.component';
 import { PrivateComponent } from './component/layouts/private/private.component';
 import { PacienteComponent } from './component/paciente/paciente.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { DashComponent } from './component/dash/dash.component';
 
+import { NgChartsModule } from 'ng2-charts';
+import { ChartModule } from 'angular-highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
+import {provideNgxMask, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -39,13 +45,17 @@ import { PacienteComponent } from './component/paciente/paciente.component';
     EditarComponent,
     PublicComponent,
     PrivateComponent,
-    PacienteComponent
+    PacienteComponent,
+    NotFoundComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, RouterModule, ReactiveFormsModule,  HttpClientModule, FormsModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
+    AppRoutingModule, RouterModule, ReactiveFormsModule,  HttpClientModule,
+     FormsModule, MatToolbarModule, MatButtonModule, MatSidenavModule,
+      MatIconModule, MatListModule, ChartModule, NgChartsModule, HighchartsChartModule, NgxMaskDirective, NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

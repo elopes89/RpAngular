@@ -3,14 +3,14 @@
     <button class="logo" (click)="toogleCollapsed()">
       <i class="fa fa-bars"></i>
     </button>
-    <div class="logo-text" *ngIf="collapsed">Angular</div>
+    <div class="logo-text" *ngIf="collapsed">MENU</div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSideNav()">
       <i class="fal fa-times close-icon"></i>
     </button>
   </div>
 
   <ul class="sidenav-nav">
-    <li class="sidenav-nav-item" *ngFor="let data of navData; index as i">
+    <li (click)="upDash()" class="sidenav-nav-item" *ngFor="let data of navData; index as i">
       <a
         class="sidenav-nav-link"
         [routerLink]="[data.routeLink]"
@@ -21,8 +21,8 @@
         }}</span>
       </a>
     </li>
-    <li class="sidenav-nav-item" (click)="testfunc()">
-      <a  class="sidenav-nav-link">
+    <li id="liSair" class="sidenav-nav-item" (click)="testfunc()">
+      <a id="ali" class="sidenav-nav-link">
         <i class="sidenav-link-icon" class="fa fa-sign-out"></i>
         <span class="sidenav-link-text" *ngIf="collapsed"> Sair </span>
       </a>

@@ -25,7 +25,7 @@ Buscar(){
 
 Detalhes(id: number){
   this.cv.idDetail = id;
-  this.router.navigate(['/detalhes'])
+  this.router.navigate(['/private/detalhes'])
 }
 
 

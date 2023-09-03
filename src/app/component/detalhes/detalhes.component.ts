@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { IPaciente } from 'IPaciente';
 import { IVacina } from 'IVacina';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
-import { navBarData } from '../menu/nav-data';
 
 @Component({
   selector: 'app-detalhes',
@@ -16,12 +15,12 @@ export class DetalhesComponent implements OnInit {
   vacinasPac: Array<IVacina> = [];
   constructor(private formBuilder: FormBuilder, private router: Router,
     private cv: CoronaVacService) {
-    this.cv.nomePagina = navBarData[2].label;
+    this.cv.nomePagina = "Detalhes";
     this.BuscarPac();
 
   }
 
-  iD = this.cv.idDetail;
+  iD = 0;
   BuscarPac() {
     this.cv.getAll("paciente", this.pacientes).subscribe(pac => {
       this.pacientes = pac;

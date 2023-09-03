@@ -6,11 +6,12 @@ export interface IPaciente {
   cep: string;
   rua: string;
   bairro: string;
-  // cpf: string;
-  // rg: string;
-  // estadoCivil: string;
-  // telefone: string;
-  // email: string;
-  // contato: string;
-  // alergias: string;
+  uf: string;
+  cpf: string;
+  rg: string;
+  estado: string;
+  telefone: string;
+  email: string;
+  contato: string;
+  alergias: string;
 }

@@ -4,7 +4,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-2">
-        <h1>Patience</h1>
+        <h2 style="color: wheat">Pacientes</h2>
+        <br />
         <form [formGroup]="registerForm">
           <div class="form-group">
             <div class="form-floating mb-3">
@@ -27,6 +28,116 @@
             </div>
             <div *ngIf="registerForm.controls?.['nome']?.errors?.['nome']">
               Formato incorreto!!
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && registerForm.controls['cpf']?.errors
+                }"
+                type="text"
+                formControlName="cpf"
+                mask="000.000.000-00"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>Cpf</label>
+
+              <div
+                *ngIf="submitted && registerForm.controls?.['cpf']?.errors"
+                class="text-danger"
+              >
+                <div
+                  *ngIf="registerForm.controls?.['cpf']?.errors?.['required']"
+                >
+                  O CPF é obrigatório!!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && registerForm.controls['email']?.errors
+                }"
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>Email</label>
+
+              <div
+                *ngIf="submitted && registerForm.controls?.['email']?.errors"
+                class="text-danger"
+              >
+                <div
+                  *ngIf="registerForm.controls?.['email']?.errors?.['email']"
+                >
+                  O Email é obrigatório!!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                [ngClass]="{
+                  'is-invalid': submitted && registerForm.controls['rg']?.errors
+                }"
+                type="text"
+                formControlName="rg"
+                mask="00.000.000.00"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>RG</label>
+
+              <div
+                *ngIf="submitted && registerForm.controls?.['rg']?.errors"
+                class="text-danger"
+              >
+                <div
+                  *ngIf="registerForm.controls?.['rg']?.errors?.['required']"
+                >
+                  O RG é obrigatório!!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && registerForm.controls['telefone']?.errors
+                }"
+                type="text"
+                formControlName="telefone"
+                mask="(00) 0 0000-0000"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>Telefone</label>
+
+              <div
+                *ngIf="submitted && registerForm.controls?.['telefone']?.errors"
+                class="text-danger"
+              >
+                <div
+                  *ngIf="registerForm.controls?.['telefone']?.errors?.['required']"
+                >
+                  O telefone é obrigatório!!
+                </div>
+              </div>
             </div>
           </div>
 
@@ -58,7 +169,25 @@
           </div>
 
           <div class="form-group">
-            <div class="form-floating">
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="floatingSelectGrid"
+                aria-label="Floating label select example"
+                formControlName="estado"
+                placeholder="Gênero"
+              >
+                <option value="Casado(a)"> Casado(a)</option>
+                <option value="Solteiro(a)"> Solteiro(a)</option>
+                <option value="União Estável"> União estável</option>
+              </select>
+              <label for="floatingSelectGrid"> Estado Civil</label>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
               <select
                 class="form-select"
                 id="floatingSelectGrid"
@@ -73,72 +202,43 @@
               <label for="floatingSelectGrid">GÊNERO</label>
             </div>
           </div>
+          <br />
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
+                formControlName="cep"
+                class="form-control"
+                (change)="BuscaCep()"
+                placeholder="Cep"
+              />
+              <label for="cep">CEP</label>
+            </div>
+          </div>
 
-          <div *ngIf="boEdit">
+          <div *ngIf="end">
             <div class="form-group">
               <div class="form-floating mb-3">
                 <input
+                  type="text"
                   [readOnly]="true"
-                  type="text"
-                  [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
-                  formControlName="cep"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="Cep"
-                  (change)="BuscaCep()"
-                />
-                <label for="cep">CEP</label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  formControlName="bairro"
-                  class="form-control"
-                  placeholder="Bairro"
-                />
-                <label for="bairro">Bairro</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  formControlName="rua"
+                  formControlName="uf"
+                  [ngModel]="end.uf"
                   class="form-control"
                   placeholder="Rua"
                 />
-                <label for="rua">Rua</label>
+                <label for="uf">uf</label>
               </div>
             </div>
-          </div>
 
-          <div *ngIf="boEdit == false">
-            <div class="form-group">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  [(ngModel)]="cepForm"
-                  [ngClass]="{'is-invalid': submitted && registerForm.controls?.['cep']?.errors}"
-                  formControlName="cep"
-                  class="form-control"
-                  (change)="BuscaCep()"
-                  placeholder="Cep"
-                />
-                <label for="cep">CEP</label>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="cepForm">
             <div class="form-group">
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   [readOnly]="true"
-                  [(ngModel)]="end.bairro"
                   formControlName="bairro"
+                  [(ngModel)]="end.bairro"
                   class="form-control"
                   placeholder="Bairro"
                 />
@@ -151,8 +251,8 @@
                 <input
                   type="text"
                   [readOnly]="true"
-                  [(ngModel)]="end.logradouro"
                   formControlName="rua"
+                  [ngModel]="end.logradouro"
                   class="form-control"
                   placeholder="Rua"
                 />
@@ -184,21 +284,7 @@
         >
           DELETAR
         </button>
-        <div *ngIf="disBotao">
-          <button class="btn btn-secondary" (click)="EditarCep()">
-            EDITAR Cep
-          </button>
-        </div>
       </div>
     </div>
   </div>
-</div>
-<h2>A implementar</h2>
-<div>
-  Data de Nascimento: Obrigatório, data válida. CPF: Obrigatório com o formato
-  000.000.000-00 RG com órgão expedidor: Obrigatório, com máximo de 20
-  caracteres. Estado Civil: Obrigatório com dropdown de opções pré-definidas.
-  Telefone: Obrigatório com o formato (99) 9 9999-9999. E-mail: Não obrigatório
-  e com validação. Contato de Emergência: Obrigatório com o formato (99) 9
-  9999-9999. Alergias: Obrigatório, com máximo de 1000 caracteres.
 </div>

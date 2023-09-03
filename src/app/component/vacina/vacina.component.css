@@ -1,25 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  position: relative;
-  font-family: "Roboto", sans-serif;
-}
-
-.cont {
+.conteudo {
   display: flex;
-  align-items: center;
 }
 
-.container {
-  position: relative;
-  margin-left: 200px;
-  margin-right: 0;
-}
-.row {
-  margin-right: 0;
-  margin-left: 200px;
+.init {
+  margin: 0;
+  width: 300px;
 }
