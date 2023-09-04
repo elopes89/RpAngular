@@ -116,6 +116,18 @@
           <div class="form-group">
             <div class="form-floating mb-3">
               <input
+                type="text"
+                formControlName="alergias"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>Alergias</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
                 [ngClass]="{
                   'is-invalid':
                     submitted && registerForm.controls['telefone']?.errors
@@ -138,6 +150,18 @@
                   O telefone é obrigatório!!
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                formControlName="contato"
+                class="form-control"
+                placeholder="kkkkkk"
+              />
+              <label>Contato</label>
             </div>
           </div>
 
@@ -175,16 +199,15 @@
                 id="floatingSelectGrid"
                 aria-label="Floating label select example"
                 formControlName="estado"
-                placeholder="Gênero"
+                placeholder="estado"
               >
-                <option value="Casado(a)"> Casado(a)</option>
-                <option value="Solteiro(a)"> Solteiro(a)</option>
-                <option value="União Estável"> União estável</option>
+                <option value="Casado(a)">Casado(a)</option>
+                <option value="Solteiro(a)">Solteiro(a)</option>
+                <option value="União Estável">União estável</option>
               </select>
               <label for="floatingSelectGrid"> Estado Civil</label>
             </div>
           </div>
-
 
           <div class="form-group">
             <div class="form-floating mb-3">

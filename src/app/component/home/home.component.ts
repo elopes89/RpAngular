@@ -27,12 +27,13 @@ export class HomeComponent {
   Buscar() {
     this.cv.getAll("paciente", this.pacientes).subscribe(pac => {
       this.pac = pac.length;
-      this.pacientes = pac;
+      this.pacientes = pac
     })
 
     this.cv.getAll("vacina", this.cv.vacinas).subscribe(vac => {
       this.vac = vac.length;
     })
+
   }
 
   Detalhes(id: number) {

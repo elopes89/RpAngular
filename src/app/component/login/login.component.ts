@@ -42,8 +42,8 @@ this.cv.nomePagina = '';
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      senha: ['22', [Validators.required, Validators.minLength(1)]],
-      email: ['22', [Validators.required]]
+      senha: ['', [Validators.required, Validators.minLength(1)]],
+      email: ['', [Validators.required]]
     })
   }
 

@@ -12,21 +12,22 @@ import { IDash } from '../component/dash/IDash';
 })
 export class CoronaVacService {
   boolEditar = false;
+  vacinas: Array<IVacina> = [];
+  pacientes: Array<IPaciente> = [];
   dashArr: any;
   objDash = {
     id: 0,
     paciente: 0,
     vacina: 0
   }
-  pacientes: Array<IPaciente> = [];
-  vacinas: Array<IVacina> = [];
-  chartData = [this.vacinas.length, this.pacientes.length];
   idVacina = 0;
   idDetail = 0;
   nomePagina = "";
   atvBotao = false;
   apiBase = "http://localhost:3000"
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.BuscarDash()
+  }
 
   getCep(cep: string): Observable<IEndereco> {
     return this.http.get<IEndereco>(`http://viacep.com.br/ws/${cep}/json`);
@@ -42,23 +43,21 @@ export class CoronaVacService {
   edit(usuario: any, id: number): Observable<IPaciente> {
     return this.http.put<IPaciente>(`${this.apiBase}/paciente/${id}`, usuario)
   }
+  getId(id: number, endPoint: string, t: any): Observable<typeof t> {
+    return this.http.get<typeof t>(`${this.apiBase}/${endPoint}/${id}`)
+  }
 
   editDash(usuario: any, id: number): Observable<IDash> {
     return this.http.put<IDash>(`${this.apiBase}/dash/${id}`, usuario)
   }
-
-
-  getId(id: number, endPoint: string, t: any): Observable<typeof t> {
-    return this.http.get<typeof t>(`${this.apiBase}/${endPoint}/${id}`)
-  }
-  getDash(): Observable<IDash> {
-    return this.http.get<IDash>(`${this.apiBase}/dash`)
+  getDash(): Observable<IDash[]> {
+    return this.http.get<IDash[]>(`${this.apiBase}/dash`)
   }
 
   BuscarDash() {
     this.getAll("paciente", this.pacientes).subscribe(pac => {
       this.pacientes = pac;
-      this.objDash.paciente = this.pacientes.length;
+      this.objDash.paciente  = this.pacientes.length;
     })
 
     this.getAll("vacina", this.vacinas).subscribe(vac => {
@@ -66,11 +65,15 @@ export class CoronaVacService {
     })
   }
 
+
   atualizarDash() {
+    this.BuscarDash()
     this.editDash(this.objDash, 0).subscribe((not) => {
+      this.objDash.paciente;
       this.dashArr.push(not);
     })
   }
+
 
 
   del(id: number): Observable<IPaciente> {
@@ -123,4 +126,15 @@ export class CoronaVacService {
   sair() {
     localStorage.clear();
   }
+
+
+  formatarDataAtual() {
+    const dataAtual = new Date();
+    if (dataAtual.getMonth() >= 10)
+      return `${dataAtual.getFullYear()}/${dataAtual.getMonth() + 1}/${dataAtual.getDate()}`;
+    else
+      return `${dataAtual.getFullYear()}/0${dataAtual.getMonth() + 1}/${dataAtual.getDate()}`;
+  }
+
+
 }

@@ -21,7 +21,7 @@
           nomeBusca !== ''
         "
       >
-        <div class="container my-5" style="margin: 0;">
+        <div class="container my-5" style="margin: 0">
           <div class="row d-flex">
             <div class="card mb-1 col p-0">
               <div class="card-body">
@@ -29,7 +29,9 @@
                 <p class="card-text">Cep: {{ b.cep }}</p>
                 <p class="card-text">Rua: {{ b.rua }}</p>
                 <p class="card-text">Id {{ b.id }}</p>
-                <button (click)="getFormPac(b.id)" class="btn btn-primary">Cadastrar vacina</button>
+                <button (click)="getFormPac(b.id)" class="btn btn-primary">
+                  Cadastrar vacina
+                </button>
               </div>
             </div>
           </div>
@@ -109,6 +111,20 @@
                 >
                   Obrigatório a Senha!!
                 </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-floating mb-3">
+                <input
+                  [ngClass]="{'is-invalid': submitted && registerForm.controls?.['data']?.errors}"
+                  type="date"
+                  formControlName="data"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Data"
+                />
+                <label for="floatingInput">Data De Nascimento</label>
               </div>
             </div>
 

@@ -19,8 +19,6 @@ export class PacienteComponent implements OnInit {
     private cv: CoronaVacService) {
     this.NP()
     this.BuscarPac();
-    this.cv.BuscarDash();
-
   }
   boEdit = this.cv.boolEditar;
   disBotao = this.cv.atvBotao;
@@ -44,15 +42,20 @@ export class PacienteComponent implements OnInit {
       return
     } else {
       this.salvar();
-      this.cv.atualizarDash();
       this.router.navigate(['/'])
     }
   }
   salvar() {
     this.cv.add(this.registerForm.value, this.pacientes, "paciente").subscribe((user => {
       this.pacientes.push(user);
+      this.upDash()
     }))
   }
+
+  upDash() {
+    this.cv.atualizarDash();
+  }
+
 
   EditPac() {
     this.submitted = true;
@@ -98,16 +101,14 @@ export class PacienteComponent implements OnInit {
       alert("Vacina cadastrada não permitido a deleção");
     }
   }
-
-
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       id: [''],
       nome: [this.atendiData ? this.atendiData.nome : '', [Validators.required]],
       cpf: [this.atendiData ? this.atendiData.cpf : '', [Validators.required]],
       rg: [this.atendiData ? this.atendiData.rg : '', [Validators.required]],
-      contato: [this.atendiData ? this.atendiData.contato : '', [Validators.required]],
-      alergias: [this.atendiData ? this.atendiData.rg : '', [Validators.required]],
+      contato: [this.atendiData ? this.atendiData.contato : ''],
+      alergias: [this.atendiData ? this.atendiData.rg : ''],
       email: [this.atendiData ? this.atendiData.email : '', [Validators.email]],
       estado: [this.atendiData ? this.atendiData.estado : '', [Validators.required]],
       telefone: [this.atendiData ? this.atendiData.telefone : '', [Validators.required]],

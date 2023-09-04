@@ -10,8 +10,8 @@
   </div>
 
   <ul class="sidenav-nav">
-    <li (click)="upDash()" class="sidenav-nav-item" *ngFor="let data of navData; index as i">
-      <a
+    <li  class="sidenav-nav-item" *ngFor="let data of navData; index as i">
+      <a (click)="upDash()"
         class="sidenav-nav-link"
         [routerLink]="[data.routeLink]"
       >

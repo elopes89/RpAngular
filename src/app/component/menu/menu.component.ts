@@ -11,13 +11,9 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   constructor(private cv: CoronaVacService, private route: Router) {
     this.Buscar();
-    this.cv.BuscarDash();
   }
   navData = navBarData;
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void { }
   upDash() {
     this.cv.atualizarDash();
   }
@@ -32,8 +28,6 @@ export class MenuComponent implements OnInit {
       this.cv.vacinas = pac;
     })
   }
-
-
 
 
   collapsed = false;
