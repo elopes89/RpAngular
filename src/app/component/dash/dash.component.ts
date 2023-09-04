@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Chart, registerables } from 'node_modules/chart.js';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
+import { IDash } from './IDash';
 Chart.register(...registerables)
 
 
@@ -12,28 +14,31 @@ Chart.register(...registerables)
 })
 export class DashComponent implements OnInit {
 
-  constructor(private cv: CoronaVacService) {
+  constructor(private cv: CoronaVacService, private formBuilder: FormBuilder) {
+
   }
 
-  chartData: any;
+  registerForm!: FormGroup;
   realData: any[] = [];
-
+  chartData: any;
+  dash: Array<IDash> = []
 
   ngOnInit() {
-
-    this.cv.getDash().subscribe(result => {
-      this.chartData = result;
+    this.cv.getDash().subscribe(pac => {
+      this.chartData = pac
       if (this.chartData != null) {
         for (let i = 0; i < this.chartData.length; i++) {
-          this.realData.push(this.chartData[i].paciente)
-          this.realData.push(this.chartData[i].vacina)
+          this.realData.push(this.chartData[i].paciente);
+          this.realData.push(this.chartData[i].vacina);
         }
+        console.log(this.realData)
       }
+
       this.RenderChart(this.realData);
     })
 
-  }
 
+  }
   RenderChart(real: any) {
     new Chart("pie", {
       type: 'bar',
@@ -73,5 +78,8 @@ export class DashComponent implements OnInit {
     });
 
   }
+
+
+
 
 }
