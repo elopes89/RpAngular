@@ -3,7 +3,7 @@
   <div>
     <app-menu></app-menu>
   </div>
-  <div>
+  <div class="init">
     <nav class="navbar navbar-light bg-light">
       <input
         [(ngModel)]="nomeBusca"
@@ -13,7 +13,7 @@
         aria-label="Search"
       />
     </nav>
-    <div *ngFor="let b of pacientes" >
+    <div *ngFor="let b of pacientes">
       <div
         class="col-12 col-md-6 col-lg-4 col-xl-3"
         *ngIf="
@@ -41,9 +41,24 @@
         </div>
       </div>
     </div>
+    <br>
+    <app-dash></app-dash>
 
+    <h2>Estatísticas</h2>
 
-    <div class="container my-5" >
+    <div class="container my-5">
+      <div class="row d-flex">
+        <div class="card mb-3 col p-0">
+          <div class="card-body">
+            <h5 class="card-title">Total de vacinas e pacientes</h5>
+            <p class="card-text">Pacientes: {{ pac }}</p>
+            <p class="card-text">Vacinas: {{ vac }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5">
       <h1>Pacientes</h1>
       <div class="row d-flex">
         <div
@@ -65,4 +80,3 @@
     </div>
   </div>
 </div>
-

@@ -5,6 +5,7 @@ import { IPaciente } from 'IPaciente';
 import { IVacina } from 'IVacina';
 import { CoronaVacService } from 'src/app/service/corona-vac.service';
 import { navBarData } from '../menu/nav-data';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-vacina',
@@ -14,7 +15,6 @@ import { navBarData } from '../menu/nav-data';
 export class VacinaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private cv: CoronaVacService) {
     this.BuscarPac();
-    this.cv.BuscarDash();
     this.cv.nomePagina = navBarData[2].label;
 
   }
@@ -32,8 +32,9 @@ export class VacinaComponent implements OnInit {
     } else {
       this.tes = this.cv.idVacina;
       this.salvar();
-      this.cv.atualizarDash();
       this.router.navigate(['/'])
+      this.cv.atualizarDash();
+
     }
   }
 
@@ -60,11 +61,14 @@ export class VacinaComponent implements OnInit {
     })
   }
 
+  hora = new Date()
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       nome: ['', [Validators.required]],
       lab: ['', [Validators.required]],
       qtd: ['', [Validators.required]],
+      data: [this.cv.formatarDataAtual(), [Validators.required]],
+      hora: [`${this.hora.getHours()}:${this.hora.getMinutes()}`],
       idPaciente: ['', [Validators.required]]
     })
   }
