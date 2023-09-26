@@ -30,10 +30,11 @@ export class PacienteComponent implements OnInit {
   end!: IEndereco;
   NP() {
     if (this.boEdit == false) {
-      this.cv.nomePagina = navBarData[3].label;
-
-    } else {
+      this.cv.nomePagina = "Pacientes";
+      this.cv.atvBotao = true;
+    } else if(this.boEdit == true) {
       this.cv.nomePagina = "Editar";
+      this.cv.atvBotao = false;
     }
   }
   OnSubmit() {
@@ -66,6 +67,7 @@ export class PacienteComponent implements OnInit {
         this.cv.pacientes.push(pac);
       });
     this.cv.boolEditar = false;
+    this.router.navigate(['/private/home']);
   }
 
   BuscarPac() {

@@ -16,19 +16,21 @@ export const navBarData = [
     routeLink: '/private/vacina',
     icon: 'fa fa-syringe',
     label: 'Vacinas'
-  }, {
+  },
+   {
     routeLink: '/private/paciente',
     icon: 'fa fa-head-side',
     label: 'Pacientes'
+  },
+  {
+    routeLink: '/private/dash',
+    icon: 'fa fa-sign-out',
+    label: 'Dash'
   }
 ]
 
 
 
-// function teste() {
-//   this.cv.sair();
-//   this.route.navigate(['/']);
-// }
 
 // {
 //   routeLink: '/detalhes',

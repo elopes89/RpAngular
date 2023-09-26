@@ -12,7 +12,7 @@ import { IEndereco } from 'src/IEndereco';
 })
 export class EditarComponent {
   atendi!: IPaciente;
- end!: IEndereco;
+  end!: IEndereco;
   constructor(private router: ActivatedRoute, private route: Router, private cv: CoronaVacService) {
   }
 
